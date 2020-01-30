@@ -1,6 +1,7 @@
 # A vue.js component to render Adaptive Cards easily
 
 Using the component allows you to easily render https://adaptivecards.io/ in your vue.js application.
+
 For more information about Adaptive Cards read this: https://docs.microsoft.com/en-us/adaptive-cards
 
 # Installation
@@ -55,6 +56,9 @@ might help.
 
 __useTemplating__
 When passing in a template set to true
+
+__HostConfig__
+Use to overwrite the default host config -> https://docs.microsoft.com/en-us/adaptive-cards/rendering-cards/host-config
 
 __onActionClicked__
 Will be send for any card with actions whenever an action is used
