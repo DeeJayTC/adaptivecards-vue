@@ -1,4 +1,4 @@
-# A vue.js compontent to render Adaptive Cards easily
+# A vue.js component to render Adaptive Cards easily
 
 Using the component allows you to easily render https://adaptivecards.io/ in your vue.js application.
 For more information about Adaptive Cards read this: https://docs.microsoft.com/en-us/adaptive-cards
