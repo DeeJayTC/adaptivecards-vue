@@ -1,10 +1,10 @@
 {
   "name": "adaptivecards-vue",
   "description": "Render cards in vue easily",
-  "version": "0.8.0",
+  "version": "0.8.3",
   "author": "Tim Cadenbach <tim.cadenbach@tcdev.de>",
   "license": "MIT",
-  "main": "dist/adaptive-cards.js",
+  "main": "dist/adaptivecards-vue.js",
   "files": [
     "dist",
     "src"

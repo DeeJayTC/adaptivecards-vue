@@ -45,16 +45,26 @@ export default {
         default: null
     }
   },
-  data() {
+  computed() {
       return {
           cardHolder: null,
           cardParsed: this.card.type == Object ? JSON.stringify(this.card) : this.card,
           dataParsed: this.data.type == Object ? JSON.stringify(this.data) : this.data
       }
   },
+  watch: {
+    data() {
+      this.renderCard();
+    },
+    card() {
+      this.renderCard();
+    },
+  },
   mounted() {
-
-
+    this.renderCard();
+  },
+  methods:{
+    renderCard(){
     const instance = axios.create({
     paramsSerializer(params) {
         return stringify(params, { arrayFormat: 'brackets' });
@@ -95,7 +105,8 @@ export default {
 
     this.cardElement = this.cardHolder.render();
     this.$el.appendChild(this.cardElement);
-  },
+    }
+  }
 };
 
 </script>

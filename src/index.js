@@ -1,9 +1,9 @@
-import AdaptiveCard from './components/AdaptiveCard.vue'
+import AdaptiveCards from './components/AdaptiveCards.vue'
 
 export default {
   install (Vue) {
-    Vue.component('adaptive-card', AdaptiveCard)
+    Vue.component('adaptive-cards', AdaptiveCards)
   }
 }
 
-export { AdaptiveCard }
+export { AdaptiveCards }

@@ -7,11 +7,11 @@ module.exports = merge(baseConfig, {
   mode: 'production',
   entry: './src/index.js',
   output: {
-    library: 'adaptive-cards-vue',
+    library: 'adaptivecards-vue',
     libraryTarget: 'umd',
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'adaptive-cards-vue.js'
+    filename: 'adaptivecards-vue.js'
   },
   externals: {
     'vue': 'Vue'
@@ -39,7 +39,7 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'adaptive-cards-vue.css'
+      filename: 'adaptivecards-vue.css'
     })
   ]
 })
