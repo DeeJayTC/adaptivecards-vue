@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import AdaptiveCard from '../src/index'
-
+import AdaptiveCards from '../src/index'
 
 Vue.use(VueRouter)
-Vue.use(AdaptiveCard)
+Vue.use(AdaptiveCards)
 const router = new VueRouter({
   routes: [
     {

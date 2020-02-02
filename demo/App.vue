@@ -14,7 +14,7 @@
         <p>Adaptive Cards in Vue.js</p>
         <hr style="margin: 50px 0px;border: 1px solid #e3e3e3;">
       </div>
-      <adaptive-card 
+      <adaptive-cards 
         :card="card" 
         :data="data"
         :cardUrl="cardUrl"

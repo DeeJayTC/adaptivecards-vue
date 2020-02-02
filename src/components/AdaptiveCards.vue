@@ -45,7 +45,7 @@ export default {
         default: null
     }
   },
-  computed() {
+  data() {
       return {
           cardHolder: null,
           cardParsed: this.card.type == Object ? JSON.stringify(this.card) : this.card,
