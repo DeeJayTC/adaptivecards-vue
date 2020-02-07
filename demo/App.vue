@@ -12,12 +12,13 @@
           </a>
         </h1>
         <p>Adaptive Cards in Vue.js</p>
+        <button v-on:click="update">Add 1</button>
         <hr style="margin: 50px 0px;border: 1px solid #e3e3e3;">
       </div>
+      {{data.title}}
       <adaptive-cards 
         :card="card" 
         :data="data"
-        :cardUrl="cardUrl"
         :useTemplating="true"
         v-on:onActionClicked="onItemClick"
       />
@@ -45,6 +46,10 @@ export default {
     onItemClick (event, item) {
       alert(event);
       alert(item);
+    },
+    update () {
+      console.log('triggered!')
+      this.data.title = 'Data Was changed!'
     }
   }
 }

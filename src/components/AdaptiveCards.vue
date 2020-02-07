@@ -42,22 +42,36 @@ export default {
     cardUrl: {
         type: String,
         required: false,
-        default: null
+        default: ''
     }
   },
   data() {
-      return {
-          cardHolder: null,
-          cardParsed: this.card.type == Object ? JSON.stringify(this.card) : this.card,
-          dataParsed: this.data.type == Object ? JSON.stringify(this.data) : this.data
-      }
+    return {
+      cardHolder: null,
+      cardRemoteTemplate: null
+    }
+  },
+  computed: {
+    cardParsed() {
+      if(this.cardRemoteTemplate != null ) return this.cardRemoteTemplate;
+      return this.card.type == Object ? JSON.stringify(this.card) : this.card;
+    },
+    dataParsed() {
+      return this.data.type == Object ? JSON.stringify(this.data) : this.data;
+    }
   },
   watch: {
-    data() {
-      this.renderCard();
+    data: {
+      handler(n, o) {
+        this.renderCard();
+      },
+      deep: true
     },
-    card() {
-      this.renderCard();
+    card: {
+      handler(n, o) {
+        this.renderCard();
+      },
+      deep: true
     },
   },
   mounted() {
@@ -66,16 +80,16 @@ export default {
   methods:{
     renderCard(){
     const instance = axios.create({
-    paramsSerializer(params) {
-        return stringify(params, { arrayFormat: 'brackets' });
-    },
+      paramsSerializer(params) {
+          return stringify(params, { arrayFormat: 'brackets' });
+      },
     });
 
     // Load the card from url if passed
-    if(this.cardUrl != null){
+    if(this.cardUrl != ''){
         const json = axios.get(this.cardUrl).then( data => {
            if(data.status == 200){
-             this.cardParsed = JSON.stringify(data.data)
+             this.cardRemoteTemplate = JSON.stringify(data.data)
            }
         });
     }
@@ -92,11 +106,11 @@ export default {
       let template = new Template(this.cardParsed);
       let context = new EvaluationContext();
       context.$root = this.dataParsed;
-      this.cardParsed = template.expand(context);
+      var cardToRender = template.expand(context);
 
-      this.cardHolder.parse(this.cardParsed);
+      this.cardHolder.parse(cardToRender);
     } else {
-      this.cardHolder.parse(this.cardParsed);
+      this.cardHolder.parse(cardToRender);
     }
 
     this.cardHolder.onExecuteAction = (action) => {
@@ -104,6 +118,7 @@ export default {
     };
 
     this.cardElement = this.cardHolder.render();
+    this.$el.innerHTML = '';
     this.$el.appendChild(this.cardElement);
     }
   }
