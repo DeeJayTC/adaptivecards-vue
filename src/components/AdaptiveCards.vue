@@ -58,6 +58,9 @@ export default {
     },
     dataParsed() {
       return this.data.type == Object ? JSON.stringify(this.data) : this.data;
+    },
+    hostConfigParsed() {
+      return this.hostConfig.type == Object ? JSON.stringify(this.hostConfig) : this.hostConfig;
     }
   },
   watch: {
@@ -68,6 +71,12 @@ export default {
       deep: true
     },
     card: {
+      handler(n, o) {
+        this.renderCard();
+      },
+      deep: true
+    },
+    hostConfig: {
       handler(n, o) {
         this.renderCard();
       },
