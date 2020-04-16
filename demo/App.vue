@@ -20,6 +20,7 @@
         :card="card" 
         :data="data"
         :useTemplating="true"
+        :hostConfig="config"
         v-on:onActionClicked="onItemClick"
       />
     </div>
@@ -29,6 +30,7 @@
 <script>
 import SampleCard from '../src/assets/exampleCard.json';
 import SampleData from '../src/assets/exampleData.json';
+import HostConfig from '../src/assets/exampleHostConfig2.json';
 export default {
   name: 'App',
   components:[
@@ -39,6 +41,7 @@ export default {
     return {
       data: SampleData,
       card: SampleCard,
+      config:HostConfig,
       cardUrl: 'https://templates.adaptivecards.io/teamwork.com/projects/task.json'
     }
   },

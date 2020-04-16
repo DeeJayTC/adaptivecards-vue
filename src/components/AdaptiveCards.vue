@@ -20,17 +20,17 @@ export default {
   },
   props: {
     card: {
-        type: Object | String,
+        type: [ String, Object ],
         required: true,
         default: null
     },
     data: {
-        type: Object | String,
+        type: [ String, Object ],
         required: false,
         default: null
     },
     hostConfig: {
-        type: Object | String,
+        type: [ String, Object ],
         required: false,
         default: ''
     },
@@ -40,7 +40,7 @@ export default {
         default: true
     },
     cardUrl: {
-        type: String,
+        type: [ String, Object ],
         required: false,
         default: ''
     }
@@ -54,13 +54,17 @@ export default {
   computed: {
     cardParsed() {
       if(this.cardRemoteTemplate != null ) return this.cardRemoteTemplate;
-      return this.card.type == Object ? JSON.stringify(this.card) : this.card;
+      return this.card;
     },
     dataParsed() {
-      return this.data.type == Object ? JSON.stringify(this.data) : this.data;
+      return this.data;
     },
     hostConfigParsed() {
-      return this.hostConfig.type == Object ? JSON.stringify(this.hostConfig) : this.hostConfig;
+      if(this.hostConfig != '' && this.hostConfig != undefined) {
+          return new AdaptiveCards.HostConfig(this.hostConfig);
+      } else {
+        return new AdaptiveCards.HostConfig(HostConfig)
+      }
     }
   },
   watch: {
@@ -103,9 +107,8 @@ export default {
         });
     }
     this.cardHolder = new AdaptiveCards.AdaptiveCard();
-    // Use Default Host Config if not passed
-    this.cardHolder.HostConfig = this.hostConfig == '' ? JSON.stringify(HostConfig) : this.hostConfig;
-
+    this.cardHolder.hostConfig = this.hostConfigParsed;
+ 
     if(this.useTemplating && this.data == null){
         this.$el.remove();
         throw new Error("When using templating data is required");
@@ -116,7 +119,6 @@ export default {
       let context = new EvaluationContext();
       context.$root = this.dataParsed;
       var cardToRender = template.expand(context);
-
       this.cardHolder.parse(cardToRender);
     } else {
       this.cardHolder.parse(cardToRender);
