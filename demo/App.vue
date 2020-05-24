@@ -12,43 +12,41 @@
           </a>
         </h1>
         <p>Adaptive Cards in Vue.js</p>
-        <button v-on:click="update">Add 1</button>
+        <button @click="update">
+          Add 1
+        </button>
         <hr style="margin: 50px 0px;border: 1px solid #e3e3e3;">
       </div>
-      {{data.title}}
-      <adaptive-cards 
-        :card="card" 
+      {{ data.title }}
+      <adaptive-cards
+        :card="card"
         :data="data"
-        :useTemplating="true"
-        :hostConfig="config"
-        v-on:onActionClicked="onItemClick"
+        :use-templating="true"
+        :host-config="config"
+        @onActionClicked="onItemClick"
       />
     </div>
   </div>
 </template>
 
 <script>
-import SampleCard from '../src/assets/exampleCard.json';
-import SampleData from '../src/assets/exampleData.json';
-import HostConfig from '../src/assets/exampleHostConfig2.json';
+import SampleCard from '../src/assets/exampleCard.json'
+import SampleData from '../src/assets/exampleData.json'
+import HostConfig from '../src/assets/exampleHostConfig2.json'
 export default {
   name: 'App',
-  components:[
-    SampleCard,
-    SampleData
-  ],
   data () {
     return {
       data: SampleData,
       card: SampleCard,
-      config:HostConfig,
+      config: HostConfig,
       cardUrl: 'https://templates.adaptivecards.io/teamwork.com/projects/task.json'
     }
   },
   methods: {
     onItemClick (event, item) {
-      alert(event);
-      alert(item);
+      alert(event)
+      alert(item)
     },
     update () {
       console.log('triggered!')

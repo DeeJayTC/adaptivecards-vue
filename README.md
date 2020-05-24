@@ -36,7 +36,6 @@ export default {
     <adaptive-card 
     :card="card" 
     :data="data"
-    :cardUrl="cardUrl"
     :useTemplating="true"
     v-on:onActionClicked="onItemClick"
   />
@@ -54,6 +53,11 @@ When using a template, pass in data for the template as object or json
 Read: https://docs.microsoft.com/en-us/adaptive-cards/templating/ for a guide about templating
 Also: https://medium.com/@tim.cadenbach/why-templating-for-adaptive-cards-is-a-game-changer-1606de3226ed
 might help. 
+
+**NOTE:** Breaking Change!
+When using the most recent AdaptiveCards Templating package you have to update your templates. 
+
+Instead of using {$root.data} you now have to use ${$root.data}
 
 __:useTemplating__
 
