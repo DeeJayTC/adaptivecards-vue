@@ -4,6 +4,10 @@ Using the component allows you to easily render https://adaptivecards.io/ in you
 
 For more information about Adaptive Cards read this: https://docs.microsoft.com/en-us/adaptive-cards
 
+# Versioning changed!
+You might have noticed the version made a big jump, thats because we want to be inline with supported
+AdaptiveCards version which currently is 2.9.0
+
 # Installation
 
 ```

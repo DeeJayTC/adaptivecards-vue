@@ -1,71 +1,54 @@
 {
     "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.3",
     "body": [
         {
-            "type": "TextBlock",
-            "size": "Medium",
-            "weight": "Bolder",
-            "text": "${title}"
+            "type": "Input.Text",
+            "placeholder": "Your family name...ff",
+            "label": "Family Name",
+            "isRequired": true,
+            "errorMessage": "This field is required",
+            "id": "familyname"
         },
         {
-            "type": "ColumnSet",
-            "columns": [
-                {
-                    "type": "Column",
-                    "items": [
-                        {
-                            "type": "Image",
-                            "style": "Person",
-                            "url": "${creator.profileImage}",
-                            "size": "Small"
-                        }
-                    ],
-                    "width": "auto"
-                },
-                {
-                    "type": "Column",
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "weight": "Bolder",
-                            "text": "${creator.name}",
-                            "wrap": true
-                        },
-                        {
-                            "type": "TextBlock",
-                            "spacing": "None",
-                            "text": "Created ${formatDateTime(createdUtc, 'dddd dd. MMMM yyyy')}",
-                            "isSubtle": true,
-                            "wrap": true
-                        }
-                    ],
-                    "width": "stretch"
-                }
-            ]
+            "type": "Input.Text",
+            "placeholder": "Placeholder text",
+            "label": "Your first name...",
+            "errorMessage": "This field is required",
+            "isRequired": true,
+            "id": "firstname"
         },
         {
-            "type": "TextBlock",
-            "text": "${description}",
-            "wrap": true
+            "type": "Input.Date",
+            "label": "Date of birth",
+            "min": "1.1.1940",
+            "max": "31.1.2020",
+            "isRequired": false,
+            "id": "1234"
         },
         {
-            "type": "FactSet",
-            "facts": [
-                {
-                    "$data": "${$root.properties}",
-                    "title": "${key}:",
-                    "value": "${value}"
-                }
-            ]
+            "type": "Input.Text",
+            "placeholder": "email@domain.com",
+            "errorMessage": "Please enter a valid email address",
+            "label": "Your Email",
+            "isRequired": true,
+            "id": "email"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "Placeholder text",
+            "label": "Password",
+            "id": "pwd",
+            "isRequired": true,
+            "errorMessage": "1 Lower, 1 Upper, 1 Special and min 8 chars required",
+            "regex": "(?=(.*[0-9]))(?=.*[\\!@#$%^&*()\\\\[\\]{}\\-_+=~`|:;\"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}"
         }
     ],
     "actions": [
         {
-            "type": "Action.OpenUrl",
-            "title": "View",
-            "url": "${viewUrl}"
+            "type": "Action.Submit",
+            "title": "Sign Up"
         }
-    ],
-    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-    "version": "1.2"
+    ]
 }
